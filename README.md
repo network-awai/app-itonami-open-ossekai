@@ -14,7 +14,7 @@ backend Worker/XRPC logic was moved, not rewritten:
 
 | Then | Now |
 |---|---|
-| `worker/svelte/src/routes/+page.svelte` (the status page) | [`worker/cljs/src/open_ossekai/app.cljs`](worker/cljs/src/open_ossekai/app.cljs) — same fields, faithfully ported |
+| `worker/svelte/src/routes/+page.svelte` (the status page) | [`worker/cljs/src/open_ossekai/app.cljk`](worker/cljs/src/open_ossekai/app.cljk) — same fields, faithfully ported |
 | `worker/svelte/src/routes/xrpc/[...path]/+server.ts` (the file that actually deployed, per `wrangler.jsonc`'s old `main`) | [`worker/src/xrpc-dispatcher.ts`](worker/src/xrpc-dispatcher.ts) — moved byte-for-byte, only a provenance header comment added |
 | `worker/wrangler.jsonc` `main: svelte/.svelte-kit/cloudflare/_worker.js` | `main` dropped entirely |
 | `worker/wrangler.jsonc` `assets.directory: ./svelte/.svelte-kit/cloudflare/client` | `assets.directory: ./cljs/public` |
@@ -30,7 +30,7 @@ header comment for the full reasoning.
 **This is unverified**: `wrangler deploy` / `wrangler dev` were not run
 against this change.
 
-Three fields in `worker/cljs/src/open_ossekai/app.cljs`'s `default-db` were
+Three fields in `worker/cljs/src/open_ossekai/app.cljk`'s `default-db` were
 also corrected, not merely ported, against what the old Svelte constant
 held — see that namespace's docstring for detail:
 
