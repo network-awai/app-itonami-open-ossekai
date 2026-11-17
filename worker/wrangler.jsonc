@@ -26,12 +26,12 @@
     "APP_CAPABILITIES": "[\"intel-brief-l1\",\"arbitrage-l2\",\"consent-gate-l3\",\"jocho-scoring\",\"wellbecoming-plan\",\"kyu-dan-coaching\",\"ossekai-status\",\"bpmn-actor\"]",
     "APP_DESCRIPTION": "L1/L2/L3 intelligence + Well-Becoming kyu/dan coaching actor. OSINT briefs, arbitrage proposals, and consent-gated jocho scoring.",
     "APP_DISPLAY_NAME": "Open Ossekai",
-    "APP_EMBED_URL": "https://oss3k41x.etzhayyim.com/?embed=1",
+    "APP_EMBED_URL": "https://oss3k41x.itonami.cloud/?embed=1",
     "APP_FRAMEWORK": "cljs-reagent-re-frame-jp-go-dds",
     "APP_NANOID": "oss3k41x",
     "APP_PERFORMER_TYPE": "service",
     "APP_UI_TYPE": "appview",
-    "AGENTGATEWAY_MCP_ROUTER_URL": "https://mcp.etzhayyim.com/xrpc/com.etzhayyim.mcp.message"
+    "AGENTGATEWAY_MCP_ROUTER_URL": "https://mcp.itonami.cloud/xrpc/cloud.itonami.mcp.message"
   },
   "rules": [
     {
@@ -43,12 +43,12 @@
   ],
   "routes": [
     {
-      "pattern": "oss3k41x.etzhayyim.com/*",
-      "zone_name": "etzhayyim.com"
+      "pattern": "oss3k41x.itonami.cloud/*",
+      "zone_name": "itonami.cloud"
     },
     {
-      "pattern": "open-ossekai.etzhayyim.com/*",
-      "zone_name": "etzhayyim.com"
+      "pattern": "open-ossekai.itonami.cloud/*",
+      "zone_name": "itonami.cloud"
     }
   ],
   "assets": {

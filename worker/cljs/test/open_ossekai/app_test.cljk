@@ -13,10 +13,10 @@
     (is (= app/default-db @rf-db/app-db))
     (is (= "Worker" @(rf/subscribe [:app/title])))
     (is (= "worker" @(rf/subscribe [:app/name])))
-    (is (= "etzhayyim-project-open-ossekai" @(rf/subscribe [:app/project])))
+    (is (= "itonami-project-open-ossekai" @(rf/subscribe [:app/project])))
     (is (= "worker" @(rf/subscribe [:app/kind])))
     (is (= 2 @(rf/subscribe [:app/route-count])))
-    (is (= ["oss3k41x.etzhayyim.com/*" "open-ossekai.etzhayyim.com/*"]
+    (is (= ["oss3k41x.itonami.cloud/*" "open-ossekai.itonami.cloud/*"]
            @(rf/subscribe [:app/routes])))
     (is (= 9 (count @(rf/subscribe [:app/vars]))))
     (is (false? @(rf/subscribe [:app/xrpc?])))

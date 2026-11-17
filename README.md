@@ -1,9 +1,9 @@
-# com-etzhayyim-app-open-ossekai
+# app-itonami-open-ossekai
 
 Open Ossekai — L1/L2/L3 intelligence + Well-Becoming kyu/dan coaching actor.
 OSINT briefs, arbitrage proposals, and consent-gated jocho scoring. It is the
-Cloudflare Worker serving `open-ossekai.etzhayyim.com` and
-`oss3k41x.etzhayyim.com`.
+Cloudflare Worker serving `open-ossekai.itonami.cloud` and
+`oss3k41x.itonami.cloud`.
 
 ## Frontend migrated to ClojureScript (2026-09-07)
 

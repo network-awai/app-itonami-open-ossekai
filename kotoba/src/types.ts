@@ -5,39 +5,39 @@
  * Per ADR-2606011400 (Consensys) + ADR-2605172400 (3-axis) + ADR-2605181100
  * (kotoba E2E encrypted-record envelope) + ADR-0018 (PII Tier-3 + consent-gate)
  * + ADR-2605264000 (ossekai information-arbitrage actor). Founder directive
- * 2026-06-03: PII / CUI / LE may migrate to etzhayyim when E2E-safe.
+ * 2026-06-03: PII / CUI / LE may migrate to itonami when E2E-safe.
  *
  * SPLIT:
  *   PUBLIC (plaintext AT records) — L2 arbitrage opportunities: per-detection
  *   public-good information-asymmetry gaps (topic category, scope, severity,
  *   order-of-magnitude affected-population estimate). No subject PII; these are
  *   community-benefit intel pockets meant to be broadly surfaced. Frontable
- *   open catalog (com.etzhayyim.ossekai.arbitrageGapReport shape).
+ *   open catalog (cloud.itonami.ossekai.arbitrageGapReport shape).
  *
- *   SENSITIVE / PII Tier-3 (kotoba E2E, com.etzhayyim.encrypted.record) — L3
+ *   SENSITIVE / PII Tier-3 (kotoba E2E, cloud.itonami.encrypted.record) — L3
  *   per-person jocho (情緒) assessments: subjectDid + 5-axis Well-Becoming
  *   scores + kyu/dan target. ADR-0018 Tier-3: requires prior actor consent and
  *   MUST NOT be substrate-visible in plaintext. Written via sdk.encryptedWrite
  *   (read-cap = subject/owner DID auto + explicit consented recipients), read
  *   via sdk.encryptedRead. The substrate never sees a person's jocho scores.
  *
- *   STAYS etzhayyim (consumed via consent-capability) — L1 LLM intel-brief
+ *   STAYS itonami (consumed via consent-capability) — L1 LLM intel-brief
  *   generation (Murakumo inference), jocho-scoring INFERENCE execution,
  *   framing-audit inference, and fiat sales-lead propagation
  *   (vertex_open_sales_lead). These are regulated *acts* (GPU/LLM inference +
  *   downstream commercial settlement), not the resulting data records. The
- *   jocho DATA migrates E2E; only the scoring/inference EXECUTION stays etzhayyim.
+ *   jocho DATA migrates E2E; only the scoring/inference EXECUTION stays itonami.
  *
  * AT-Lexicon: no float — affected-population + axis scores + confidence are
  * integers; scores/confidence are 0-100.
  */
 
 // Plaintext public collection (L2 arbitrage gap catalog).
-export const ARBITRAGE_COLLECTION = "com.etzhayyim.apps.openOssekai.arbitrageOpportunity";
+export const ARBITRAGE_COLLECTION = "cloud.itonami.apps.openOssekai.arbitrageOpportunity";
 // E2E inner-type NSID (body shape inside the encrypted envelope; L3 jocho PII).
-export const JOCHO_INNER_TYPE = "com.etzhayyim.apps.openOssekai.jochoAssessment";
+export const JOCHO_INNER_TYPE = "cloud.itonami.apps.openOssekai.jochoAssessment";
 
-export const OSSEKAI_DID_PREFIX = "did:web:open-ossekai.etzhayyim.com:" as const;
+export const OSSEKAI_DID_PREFIX = "did:web:open-ossekai.itonami.cloud:" as const;
 
 export type AsymmetrySeverity = "low" | "mid" | "high" | "critical";
 export type ScopeKind = "global" | "jurisdiction" | "community-site" | "cross-jurisdictional";
