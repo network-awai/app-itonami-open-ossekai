@@ -14,7 +14,7 @@
  * only the resulting jocho DATA migrates here, E2E-sealed.
  */
 
-import type { Etzhayyim } from "@etzhayyim/sdk";
+import type { LocalStore } from "../local-store.js";
 import {
   ARBITRAGE_COLLECTION,
   JOCHO_INNER_TYPE,
@@ -50,7 +50,7 @@ const DEFAULT_MAX_SCAN = 10_000;
 
 // ─── Arbitrage opportunity (PLAINTEXT) ──────────────────────────────
 
-export async function registerArbitrage(e: Etzhayyim, input: RegisterArbitrageInput): Promise<RegisterArbitrageOutput> {
+export async function registerArbitrage(e: LocalStore, input: RegisterArbitrageInput): Promise<RegisterArbitrageOutput> {
   if (!input.arbId || !input.topicCategory) return { status: "rejected", error: "missingRequiredFields" };
   if (!isSeverity(input.severity)) return { status: "rejected", error: "invalidSeverity" };
   if (!isScopeKind(input.scopeKind)) return { status: "rejected", error: "invalidScopeKind" };
@@ -77,7 +77,7 @@ export async function registerArbitrage(e: Etzhayyim, input: RegisterArbitrageIn
   return { status: "registered", arbUri: receipt.uri, did, arbId: input.arbId };
 }
 
-export async function getArbitrage(e: Etzhayyim, input: GetArbitrageInput): Promise<GetArbitrageOutput> {
+export async function getArbitrage(e: LocalStore, input: GetArbitrageInput): Promise<GetArbitrageOutput> {
   if (!input.arbId) return { error: "invalidArbId" };
   const resp = await e.read<ArbitrageOpportunityRecord>({ collection: ARBITRAGE_COLLECTION, rkey: arbitrageRkey(input.arbId) }).catch(() => ({ records: [] }));
   const hit = resp.records[0];
@@ -85,7 +85,7 @@ export async function getArbitrage(e: Etzhayyim, input: GetArbitrageInput): Prom
   return { opportunity: { ...hit.value, arbUri: hit.uri } };
 }
 
-export async function listArbitrage(e: Etzhayyim, input: ListArbitrageInput = {}): Promise<ListArbitrageOutput> {
+export async function listArbitrage(e: LocalStore, input: ListArbitrageInput = {}): Promise<ListArbitrageOutput> {
   const limit = Math.min(input.limit ?? 50, 200);
   const resp = await e.read<ArbitrageOpportunityRecord>({ collection: ARBITRAGE_COLLECTION, cursor: input.cursor, limit });
   const items: ArbitrageOpportunityView[] = resp.records
@@ -97,7 +97,7 @@ export async function listArbitrage(e: Etzhayyim, input: ListArbitrageInput = {}
 
 // ─── Jocho assessment (E2E-ENCRYPTED, PII Tier-3) ───────────────────
 
-export async function recordJocho(e: Etzhayyim, input: RecordJochoInput): Promise<RecordJochoOutput> {
+export async function recordJocho(e: LocalStore, input: RecordJochoInput): Promise<RecordJochoOutput> {
   if (!input.assessmentId || !input.subjectDid || !input.consentDid) return { status: "rejected", error: "missingRequiredFields" };
   if (!input.targetKyuDan) return { status: "rejected", error: "missingTargetKyuDan" };
   for (const v of [input.engagement, input.competence, input.contribution, input.growth, input.resilience]) {
@@ -125,7 +125,7 @@ export async function recordJocho(e: Etzhayyim, input: RecordJochoInput): Promis
   return { status: "recorded", uri: receipt.uri, keyId: receipt.keyId, assessmentId: input.assessmentId };
 }
 
-async function scanJocho(e: Etzhayyim, maxScan: number): Promise<JochoAssessmentView[]> {
+async function scanJocho(e: LocalStore, maxScan: number): Promise<JochoAssessmentView[]> {
   const out: JochoAssessmentView[] = [];
   let cursor: string | undefined;
   while (out.length < maxScan) {
@@ -139,14 +139,14 @@ async function scanJocho(e: Etzhayyim, maxScan: number): Promise<JochoAssessment
   return out;
 }
 
-export async function listJocho(e: Etzhayyim, input: ListJochoInput = {}): Promise<ListJochoOutput> {
+export async function listJocho(e: LocalStore, input: ListJochoInput = {}): Promise<ListJochoOutput> {
   const limit = Math.min(input.limit ?? 50, 200);
   const all = await scanJocho(e, DEFAULT_MAX_SCAN);
   const filtered = all.filter((j) => !input.subjectDid || j.subjectDid === input.subjectDid);
   return { items: filtered.slice(0, limit), total: filtered.length };
 }
 
-export async function getJocho(e: Etzhayyim, input: GetJochoInput): Promise<GetJochoOutput> {
+export async function getJocho(e: LocalStore, input: GetJochoInput): Promise<GetJochoOutput> {
   if (!input.assessmentId) return { error: "invalidAssessmentId" };
   const all = await scanJocho(e, DEFAULT_MAX_SCAN);
   const found = all.find((j) => j.assessmentId === input.assessmentId);
@@ -156,7 +156,7 @@ export async function getJocho(e: Etzhayyim, input: GetJochoInput): Promise<GetJ
 
 // ─── Coverage rollup ────────────────────────────────────────────────
 
-export async function coverage(e: Etzhayyim, input: CoverageInput = {}): Promise<CoverageOutput> {
+export async function coverage(e: LocalStore, input: CoverageInput = {}): Promise<CoverageOutput> {
   const maxScan = Math.min(input.maxScan ?? DEFAULT_MAX_SCAN, DEFAULT_MAX_SCAN);
   const opportunitiesByCategory: Record<string, number> = {};
   let arbitrageOpportunityCount = 0;
