@@ -1,5 +1,6 @@
-import { describe, it, expect, beforeEach } from "vitest";
-import { MockEtzhayyim } from "@etzhayyim/sdk-mock";
+import { describe, it, beforeEach } from "node:test";
+import { expect } from "./expect.mjs";
+import { LocalStore } from "../dist/local-store.js";
 import {
   registerArbitrage,
   getArbitrage,
@@ -8,14 +9,14 @@ import {
   listJocho,
   getJocho,
   coverage,
-} from "../src/index.js";
+} from "../dist/domain/index.js";
 
 const OWNER = "did:web:open-ossekai.itonami.cloud";
 
 describe("open-ossekai kotoba (kotoba-E2E split)", () => {
   let e: any;
   beforeEach(() => {
-    e = new MockEtzhayyim({ did: OWNER });
+    e = new LocalStore({ did: OWNER });
   });
 
   describe("arbitrageOpportunity (PLAINTEXT public-good catalog)", () => {
@@ -133,7 +134,7 @@ describe("open-ossekai kotoba (kotoba-E2E split)", () => {
         targetKyuDan: "3-kyu",
         consentDid: "did:web:subj",
       });
-      const outsider: any = new MockEtzhayyim({ did: "did:web:outsider.example" });
+      const outsider: any = new LocalStore({ did: "did:web:outsider.example" });
       // Distinct PDS view, no read-cap — proves isolation by owner DID.
       expect((await listJocho(outsider)).total).toBe(0);
     });
