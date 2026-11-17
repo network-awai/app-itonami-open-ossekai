@@ -13,8 +13,8 @@
   this migration itself changed:
 
   - `:app/route-count` and `:app/routes` now report what `wrangler.jsonc`
-    actually declares (2 route patterns: `oss3k41x.etzhayyim.com/*` and
-    `open-ossekai.etzhayyim.com/*`), not the stale `0` / `[]` the Svelte
+    actually declares (2 route patterns: `oss3k41x.itonami.cloud/*` and
+    `open-ossekai.itonami.cloud/*`), not the stale `0` / `[]` the Svelte
     constant carried.
   - `:app/relative-path` now names this file, not the deleted Svelte one.
   - `:app/xrpc?` is now false, even though the old `app.xrpc` constant was
@@ -38,11 +38,11 @@
 
     (require '[jp-go-dds.page :as page] '[clojure.java.io :as io])
     (spit \"public/index.html\"
-          (page/->page {:title \"etzhayyim-project-open-ossekai\"
+          (page/->page {:title \"itonami-project-open-ossekai\"
                          :lang \"ja\"
                          :description \"Open Ossekai — L1/L2/L3 intelligence + Well-Becoming kyu/dan coaching actor (reagent + re-frame + jp-go-dds).\"
                          :css (slurp (io/resource \"jp_go_dds/dds.css\"))}
-                        [:div {:id \"app\"} \"etzhayyim-project-open-ossekai loading…\"]
+                        [:div {:id \"app\"} \"itonami-project-open-ossekai loading…\"]
                         [:script {:src \"js/app.js\"}]))"
   (:require [reagent.dom :as rdom]
             [re-frame.core :as rf]
@@ -55,11 +55,11 @@
 
 (def default-db
   {:app/title "Worker"
-   :app/project "etzhayyim-project-open-ossekai"
+   :app/project "itonami-project-open-ossekai"
    :app/name "worker"
    :app/kind "worker"
    :app/route-count 2
-   :app/routes ["oss3k41x.etzhayyim.com/*" "open-ossekai.etzhayyim.com/*"]
+   :app/routes ["oss3k41x.itonami.cloud/*" "open-ossekai.itonami.cloud/*"]
    :app/vars ["AGENTGATEWAY_MCP_ROUTER_URL" "APP_CAPABILITIES" "APP_DESCRIPTION"
               "APP_DISPLAY_NAME" "APP_EMBED_URL" "APP_FRAMEWORK" "APP_NANOID"
               "APP_PERFORMER_TYPE" "APP_UI_TYPE"]

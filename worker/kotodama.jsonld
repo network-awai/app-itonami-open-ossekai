@@ -1,9 +1,9 @@
 {
-  "@context": "https://etzhayyim.com/ns/kotodama/v1",
-  "@id": "did:web:open-ossekai.etzhayyim.com",
+  "@context": "https://itonami.cloud/ns/kotodama/v1",
+  "@id": "did:web:open-ossekai.itonami.cloud",
   "name": "open-ossekai",
   "nanoid": "oss3k41x",
-  "handle": "open-ossekai.etzhayyim.com",
+  "handle": "open-ossekai.itonami.cloud",
   "performerType": "service",
   "runtimeType": "worker",
   "project": "open-ossekai",
@@ -11,7 +11,7 @@
   "governance": {
     "raci": "responsible",
     "classification": "pii-tier3",
-    "complianceFrameworks": ["etzhayyim-pii-tier3-adr0018", "etzhayyim-consent-gate", "etzhayyim-wellbecoming"]
+    "complianceFrameworks": ["itonami-pii-tier3-adr0018", "itonami-consent-gate", "itonami-wellbecoming"]
   },
   "profile": {
     "displayName": "Open Ossekai",
@@ -19,7 +19,7 @@
     "avatar": "🌸",
     "category": "intelligence",
     "isBot": true,
-    "operator": "etzhayyim",
+    "operator": "itonami",
     "agentType": "autonomous",
     "capabilities": [
       "intel-brief-l1",
@@ -36,9 +36,9 @@
     "subscribeRepos": {
       "collections": [
         "app.bsky.feed.post",
-        "com.etzhayyim.apps.openOssekai.intelBrief",
-        "com.etzhayyim.apps.openOssekai.arbitrage",
-        "com.etzhayyim.apps.openOssekai.wellBecomingPlan"
+        "cloud.itonami.apps.openOssekai.intelBrief",
+        "cloud.itonami.apps.openOssekai.arbitrage",
+        "cloud.itonami.apps.openOssekai.wellBecomingPlan"
       ]
     }
   },

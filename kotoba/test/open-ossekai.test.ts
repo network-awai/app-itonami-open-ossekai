@@ -10,7 +10,7 @@ import {
   coverage,
 } from "../src/index.js";
 
-const OWNER = "did:web:open-ossekai.etzhayyim.com";
+const OWNER = "did:web:open-ossekai.itonami.cloud";
 
 describe("open-ossekai kotoba (kotoba-E2E split)", () => {
   let e: any;
