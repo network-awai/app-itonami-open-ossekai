@@ -15,8 +15,9 @@ const OWNER = "did:web:open-ossekai.itonami.cloud";
 
 describe("open-ossekai kotoba (kotoba-E2E split)", () => {
   let e: any;
-  beforeEach(() => {
-    e = new LocalStore({ did: OWNER });
+  beforeEach(async () => {
+    e = new LocalStore({ did: OWNER, sealIterations: 1000 });
+    await e.setupSealKey("test passphrase");
   });
 
   describe("arbitrageOpportunity (PLAINTEXT public-good catalog)", () => {
