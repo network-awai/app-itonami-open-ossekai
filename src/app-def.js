@@ -7,9 +7,10 @@ export const app = {
   description: "おせっかい — 需給のずれ（arbitrage の機会）を公共財のカタログとして記録し、本人の同意にもとづく情緒（jocho）の評価を手元で残します。推論は含みません。",
   did: "did:web:open-ossekai.itonami.cloud",
   storageKey: "itonami.open-ossekai.v1",
+  sealed: true,
   collections: [
     { name: "cloud.itonami.apps.openOssekai.arbitrageOpportunity", label: "arbitrageOpportunity" },
-    { name: "sealed:cloud.itonami.apps.openOssekai.jochoAssessment", label: "情緒の評価（read-cap つき、平文で保存）" },
+    { name: "sealed:cloud.itonami.apps.openOssekai.jochoAssessment", label: "情緒の評価（暗号化して保存、read-cap つき）" },
   ],
   actions: [
     { name: "registerArbitrage", label: "機会を登録 (registerArbitrage)",
